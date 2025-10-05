@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -16,62 +15,92 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import Victory from '@/assets/victory.svg'
+import Victory from "@/assets/victory.svg"
+import loginLogo from "@/assets/login-bg.png"
 
 const Auth = () => {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6">
-      <Tabs defaultValue="account">
-        <TabsList>
-          <TabsTrigger value="account">Login </TabsTrigger>
-          <TabsTrigger value="password">Signup</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">
-          <Card>
-            <CardHeader>
-              <CardTitle>Welcome <img width={70} height={70} src={Victory} /></CardTitle>
-              <CardDescription>
-                Fill the details to get started with the Yappie!
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Input id="tabs-demo-name" placeholder="Enter your email here..." />
-              </div>
-              <div className="grid gap-3">
-                <Input id="tabs-demo-username" placeholder="Enter your password here..." />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="password">
-          <Card>
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
-                <Input id="tabs-demo-current" type="password" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
-                <Input id="tabs-demo-new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
+    <div className="flex w-full h-screen items-center justify-center bg-white">
+      {/* Left side image (hidden on small screens) */}
+      <div className="hidden md:flex justify-center">
+        <img
+          src={loginLogo}
+          alt="Yappie Logo"
+          className="max-w-md object-contain"
+        />
+      </div>
+
+      {/* Right side form */}
+      <div className="w-full md:w-1/2 max-w-md p-6">
+        <Tabs defaultValue="login" className="w-full">
+          <div className="flex flex-col items-center mb-4">
+            <CardTitle className="text-4xl flex items-center gap-2">
+              Welcome <img width={60} height={60} src={Victory} alt="Victory" />
+            </CardTitle>
+            <CardDescription className="text-center">
+              Fill the details to get started with Yappie!
+            </CardDescription>
+          </div>
+
+          {/* Tab Buttons */}
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="login">Login</TabsTrigger>
+            <TabsTrigger value="signup">Signup</TabsTrigger>
+          </TabsList>
+
+          {/* Login Tab */}
+          <TabsContent value="login">
+            <Card className="shadow-md border rounded-2xl">
+              <CardHeader>
+                <CardDescription>
+                  Enter your credentials to continue
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-4">
+                <div className="grid gap-2">
+                  <Label>Email</Label>
+                  <Input placeholder="Enter your email..." />
+                </div>
+                <div className="grid gap-2">
+                  <Label>Password</Label>
+                  <Input type="password" placeholder="Enter your password..." />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Login</Button>
+              </CardFooter>
+            </Card>
+          </TabsContent>
+
+          {/* Signup Tab */}
+          <TabsContent value="signup">
+            <Card className="shadow-md border rounded-2xl">
+              <CardHeader>
+                <CardDescription>
+                  Create an account to get started
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-4">
+                <div className="grid gap-2">
+                  <Label>Email</Label>
+                  <Input placeholder="Enter your email..." />
+                </div>
+                <div className="grid gap-2">
+                  <Label>Password</Label>
+                  <Input type="password" placeholder="Create a password..." />
+                </div>
+                <div className="grid gap-2">
+                  <Label>Confirm Password</Label>
+                  <Input type="password" placeholder="Confirm your password..." />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Create Account</Button>
+              </CardFooter>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
   )
 }
